@@ -1,0 +1,8 @@
+﻿movieId,release,movie,score,boxOffice,nbCharacter,sort,phase
+ironman3,05/03/2013,Iron Man 3,79,1214811252,17,1,0
+thorthedarkworld,11/11/2013,Thor: The Dark World,66,644783140,21,2,
+captainamericathewintersoldier,04/04/2014,Captain America: The Winter Soldier,90,714421503,21,3,0
+guardiansofthegalaxy,08/08/2014,Guardians of the Galaxy,92,773350147,23,4,0
+avengersageofultron,05/05/2015,Avengers: Age of Ultron,76,1402805868,29,5,0
+antman,07/07/2015,Ant-Man,83,519311965,18,6,0
+phaseone,,Phase One,0,0,33,0,1

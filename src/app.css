@@ -1,0 +1,97 @@
+
+ .app {
+  display: block;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  text-align: center;
+} 
+
+svg{
+  width: 100%;
+  height: 100%;
+  overflow: visible !important;
+  z-index: 1;
+} 
+
+
+.tooltip {
+  opacity: 0;
+  font-style: normal;
+  font-weight: 100;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  height: 50px;
+  padding: 0em 1em;
+  background: #fff;
+  text-align: center;
+  border: 1px solid #ddd;
+  z-index: 10;
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+}
+
+
+.tooltip:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: 1px solid #ddd;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: translate(-50%, 50%) rotate(45deg);
+  transform-origin: center center;
+  z-index: 10;
+}
+
+.tooltip-range {
+  margin-bottom: 0.2em;
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'MARVEL2';
+  src: url('./fonts/MarvelRegular-Dj83.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+circle.in {
+  transition: r 500ms ease-in, fill 1000ms ease, stroke 1000ms;
+  transition-delay: fill 500ms
+  }
+  
+  
+  line.in {
+  transition: stroke-width 250ms ease-in ,stroke 1000ms ease;
+  transition-delay: stroke-width 500ms
+  }
+
+  line.out {
+  transition: all 500ms ease-out;
+  }
+
+  .div-block-10 {
+    position: absolute;
+    width: 100%;
+    height: 900px;
+    background-position: 50% 50%;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+  }

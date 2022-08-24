@@ -1,0 +1,24 @@
+﻿movieId,release,movie,score,boxOffice,nbCharacter,sort,phase
+ironman,05/01/2008,Iron Man,94,585796247,12,1,0
+theincrediblehulk,06/01/2008,The Incredible Hulk,67,264770996,8,2,0
+ironman2,05/01/2010,Iron Man 2,72,623933331,15,3,0
+thor,05/01/2011,Thor,77,449326618,18,4,0
+captainamericathefirstavenger,07/01/2011,Captain America: The first Avenger,79,370569774,16,5,0
+marvelstheavengers,05/01/2012,Marvel's The Avengers,91,1518815515,21,6,0
+ironman3,05/13/2013,Iron Man 3,79,1214811252,17,1,0
+thorthedarkworld,11/11/2013,Thor: The Dark World,66,644783140,21,2,
+captainamericathewintersoldier,04/04/2014,Captain America: The Winter Soldier,90,714421503,21,3,0
+guardiansofthegalaxy,08/08/2014,Guardians of the Galaxy,92,773350147,23,4,0
+avengersageofultron,05/05/2015,Avengers: Age of Ultron,76,1402805868,29,5,0
+antman,07/07/2015,Ant-Man,83,519311965,18,6,0
+captainamericacivilwar,05/01/2016,Captain America: Civil War,90,1153296293,24,1,0
+doctorstrange,11/11/2016,Doctor Strange,89,677718395,14,2,0
+guardiansofthegalaxyvol2,05/05/2017,Guardians of the Galaxy Vol. 2,85,863756051,27,3,0
+spidermanhomecoming,07/07/2017,Spider-Man: Homecoming,92,880166924,37,4,0
+thorragnarok,11/11/2017,Thor: Ragnarok,93,853977126,16,5,0
+blackpanther,02/02/2018,Black Panther,96,1347280161,19,6,0
+avengersinfinitywar,04/04/2018,Avengers: Infinity War,85,2048359754,45,7,0
+antmanandthewasp,07/07/2018,Ant-Man and the Wasp,87,622674139,16,8,0
+captainmarvel,03/03/2019,Captain Marvel,79,1128275263,19,9,0
+avengersendgame,04/04/2019,Avengers: Endgame,94,2797800564,66,10,0
+spidermanfarfromhome,07/07/2019,Spider-Man: Far From Home,90,1131927996,20,11,0
