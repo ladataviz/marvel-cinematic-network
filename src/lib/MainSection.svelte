@@ -88,8 +88,7 @@
 
     function appearanceCharacter(target)
     {
-      console.log(sizeLinks)
-      return 'appears in ' + sizeLinks.filter(d => d.target.id == target && d.source.score != 0).length + ' movie(s)';
+            return 'appears in ' + sizeLinks.filter(d => d.target.id == target && d.source.score != 0).length + ' movie(s)';
     }
 
     function appearancePhase(target)
