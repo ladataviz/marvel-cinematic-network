@@ -1,6 +1,6 @@
 <script>
     import * as d3 from 'd3';
-    import { onMount, onDestroy, beforeUpdate } from "svelte"
+    import { onMount } from "svelte"
     import {colorCircleCharacter, colorStrokeLine, colorStrokeMovie, colorCircleMovie, colorStrokeCharacter, sizeStrokeLine, size} from "./ColorHandler.svelte"
     import PhaseSection from "./PhaseSection.svelte";
     import MovieSection from './MovieSection.svelte';

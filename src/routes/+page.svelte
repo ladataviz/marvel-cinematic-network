@@ -12,7 +12,7 @@
   let start = 0
   let click = 0
   let hover = 0
-  let maxH=850
+  let maxH=900
   let phase=0
   let moveRight = 0
   
