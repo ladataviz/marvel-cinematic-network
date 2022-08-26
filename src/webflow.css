@@ -1,3 +1,99 @@
+@font-face {
+  font-family: 'MARVEL2';
+  src: url('./fonts/MarvelRegular-Dj83.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+ .app {
+  display: block;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  text-align: center;
+} 
+
+svg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible !important;
+  z-index: -1;
+} 
+svg.above{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible !important;
+  z-index: 1;
+} 
+
+.tooltip {
+  opacity: 0;
+  font-style: normal;
+  font-weight: 100;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  height: 50px;
+  padding: 0em 1em;
+  background: #fff;
+  text-align: center;
+  border: 1px solid #ddd;
+  z-index: 10;
+  transition: all 0.2s ease-out;
+  pointer-events: none;
+}
+
+
+.tooltip:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: 1px solid #ddd;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  transform: translate(-50%, 50%) rotate(45deg);
+  transform-origin: center center;
+  z-index: 10;
+}
+
+.tooltip-range {
+  margin-bottom: 0.2em;
+  font-weight: 600;
+}
+
+
+circle.in {
+  transition: r 500ms ease-in, fill 1000ms ease, stroke 1000ms;
+  transition-delay: fill 500ms
+  }
+  
+  
+  line.in {
+  transition: stroke-width 250ms ease-in ,stroke 1000ms ease;
+  transition-delay: stroke-width 500ms
+  }
+
+  line.out {
+  transition: all 500ms ease-out;
+  }
+
+
 .body {
   display: block;
   height: 100%;
@@ -22,6 +118,19 @@
 .div-block-2 {
   position: -webkit-sticky;
   position: sticky !important;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  z-index: 1;
+  width: 100%;
+  height: 900px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.main-viz {
   left: auto;
   right: auto;
   bottom: auto;
@@ -65,6 +174,13 @@
   height: 11700px;
 }
 
+.paragraph-3 {
+  margin-top: 43px;
+  margin-bottom: 0px;
+  color: #747373;
+  text-align: center;
+}
+
 .section {
   display: -webkit-box;
   display: -webkit-flex;
@@ -103,6 +219,8 @@
   flex-direction: row;
 }
 
+
+
 .section.end {
   height: 541px;
   padding-left: 0vw;
@@ -120,6 +238,13 @@
   -ms-flex-align: center;
   align-items: center;
   background-color: #f7f7f7;
+  grid-row-gap: 60px;
+
+}
+
+.section.end.small {
+  height: 150px;
+  padding-bottom: 50px;
 }
 
 
@@ -148,6 +273,37 @@
   background-color: #fafafa;
   text-align: center;
 }
+
+.section-2.small {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 450px;
+  padding-top: 41px;
+  padding-bottom: 41px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+a{
+  text-decoration: none;
+}
+
 .heading {
   width: 500px;
   height: 102px;
@@ -164,6 +320,25 @@
   text-align: center;
   letter-spacing: 0px;
   text-transform: uppercase;
+}
+
+.heading.bottom {
+  width: 100%;
+  height: 52px;
+  font-size: 45px;
+  color: white;
+  letter-spacing: 3px;
+  background-color: red;
+
+}
+
+
+.linkBottom {
+  text-decoration: none;
+  width: 32%;
+  max-width: 350px;
+  color:red;
+  width: 100%;
 }
 
 .div-block-3 {
@@ -210,6 +385,32 @@
   text-transform: uppercase;
   -o-object-fit: contain;
   object-fit: contain;
+}
+
+.div-block-11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  padding-right: 60px;
+  padding-left: 60px;
+  padding-top: 40px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  grid-column-gap: 30px;
+  grid-row-gap: 20px;
 }
 
 .heading-4 {
@@ -374,6 +575,14 @@
   display: -ms-flexbox;
   display: flex;
   padding-top: 100px;
+  position: absolute;
+  width: 100%;
+  height: 900px;
+  background-position: 50% 50%;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  pointer-events: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
@@ -387,6 +596,11 @@
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.div-block-10.main {
+
+  padding-top: 0px;
 }
 
 .paragraph-3 {
@@ -428,6 +642,10 @@
     padding: 30px;
 
   }
+  .heading.bottom {
+    width: 100%;
+  }
+
 
   .section-main {
     z-index: -1;
@@ -511,6 +729,15 @@
   .paragraph-2 {
     font-size: 15px;
   }
+
+  .div-block-11 {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+  
 }
 
 @media screen and (max-width: 767px) {
@@ -578,6 +805,12 @@
     width: 100%;
   }
 
+  .heading.bottom {
+    width: 100%;
+    height: 50px;
+    font-size: 44px;
+  }
+
   .div-block-3 {
     -webkit-box-align: stretch;
     -webkit-align-items: stretch;
@@ -591,5 +824,10 @@
 
   .paragraph-2 {
     line-height: 23px;
+  }
+
+  .div-block-11 {
+    padding-right: 10px;
+    padding-left: 10px;
   }
 }

@@ -54,11 +54,67 @@ export function colorCircleCharacter(node, percentScroll, phase)
 
 export  function colorCircleMovie(id)
 {
-  let color = '#F9FBFF'
-  // if (percentScroll==1 && id=='ironman') {color= "#aa0505"}
+  let color = "#aa0406"
+
+if (id=='ironman') {color= colorIronMan}
+if (id=='theincrediblehulk') {color= colorHulk}
+if (id=='ironman2') {color= colorIronMan}
+if (id=='captainamericathefirstavenger') {color= colorCaptain}
+if (id=='thor') {color= colorThor}
+if (id=='marvelstheavengers') {color= colorMarvel}
+  if (id=='ironman3') {color= colorIronMan}
+  if (id=='thorthedarkworld') {color= colorThor}
+  if (id=='captainamericathewintersoldier') {color= colorCaptain}
+  if (id=='guardiansofthegalaxy') {color= colorGuardians}
+  if (id=='avengersageofultron') {color= colorMarvel}
+  if (id=='antman') {color= colorAntman}
+if (id=='captainamericacivilwar') {color= colorCaptain}
+  if (id=='doctorstrange') {color= colorHulk}
+  if (id=='guardiansofthegalaxyvol2') {color= colorGuardians}
+  if (id=='spidermanhomecoming') {color= colorSpider}
+  if (id=='thorragnarok') {color= colorThor}
+  if (id=='blackpanther') {color= "black"}
+  if (id=='avengersinfinitywar') {color= colorMarvel}
+  if (id=='antmanandthewasp') {color= colorAntman}
+  if (id=='captainmarvel') {color= colorCaptainMarvel}
+  if ( id=='avengersendgame') {color= colorMarvel}
+  if ( id=='spidermanfarfromhome') {color= colorSpider}
 
   return color
 }
+
+export function colorStrokeMain(id)
+{
+  let color = "#aa0406"
+
+    if (id=='ironman') {color= colorIronMan}
+  if (id=='theincrediblehulk') {color= colorHulk}
+  if (id=='ironman2') {color= colorIronMan}
+  if (id=='captainamericathefirstavenger') {color= colorCaptain}
+  if (id=='thor') {color= colorThor}
+  if (id=='marvelstheavengers') {color= colorMarvel}
+      if (id=='ironman3') {color= colorIronMan}
+      if (id=='thorthedarkworld') {color= colorThor}
+      if (id=='captainamericathewintersoldier') {color= colorCaptain}
+      if (id=='guardiansofthegalaxy') {color= colorGuardians}
+      if (id=='avengersageofultron') {color= colorMarvel}
+      if (id=='antman') {color= colorAntman}
+    if (id=='captainamericacivilwar') {color= colorCaptain}
+      if (id=='doctorstrange') {color= colorHulk}
+      if (id=='guardiansofthegalaxyvol2') {color= colorGuardians}
+      if (id=='spidermanhomecoming') {color= colorSpider}
+      if (id=='thorragnarok') {color= colorThor}
+      if (id=='blackpanther') {color= "black"}
+      if (id=='avengersinfinitywar') {color= colorMarvel}
+      if (id=='antmanandthewasp') {color= colorAntman}
+      if (id=='captainmarvel') {color= colorCaptainMarvel}
+      if ( id=='avengersendgame') {color= colorMarvel}
+      if ( id=='spidermanfarfromhome') {color= colorSpider}
+
+      return color
+  
+}
+
 
 export function colorStrokeCharacter(id)
 {
@@ -66,6 +122,8 @@ export function colorStrokeCharacter(id)
  // if (percentScroll==1 && id=='ironman') {color= "#fbca03"}
   return color 
 }
+
+
 export function colorStrokeMovie(id, percentScroll, phase)
 {
   let color = percentScroll%2== 0 ? colorBoring3 : colorBoring12

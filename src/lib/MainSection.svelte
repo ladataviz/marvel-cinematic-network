@@ -7,6 +7,7 @@
     import HeaderSection from './HeaderSection.svelte';
     import PictureHandler from './PictureHandler.svelte';
     import Tooltip from './Tooltip.svelte';
+    import FooterSection from './FooterSection.svelte';
   
     export let phase;
     export let csv;
@@ -98,7 +99,6 @@
       return nb == 0 ? '' : ' and ' + nb  + ' previous phase(s)';
     }
   
-  
     //Add mousemove action
     let closeNode;
     let tooltipId = '';
@@ -106,14 +106,14 @@
     let x = 0 
     let y = 0
     let show=0
-  
+
     function mouseMove(e) {
-    
       const p = d3.pointer(e);
       closeNode = simulation.find(p[0]-w/2 - moveRight, p[1]-maxH/2, 20);
       if(closeNode)
       {
         size(closeNode.id,closeNode.type, sizeScalePers, sizeScaleMovie,sizeLinks)!=0 ? onMouseEnter(closeNode) : show=0;
+        highlight(closeNode.id, closeNode.type)
       }
       else{
         show=0;
@@ -197,11 +197,4 @@
   {/each}
   
   
-  <div class="section end wf-section">
-      <h1 class="heading">The end</h1>
-      <div class="text-block-2">The Marvel Cinematic Network will return...<br>‍</div>
-    <p class="paragraph-3"><em>Characters and movies are copyrighted by The Walt Disney Company and the Marvel Studio.<br>All pictures come from </em>
-      <a href="https://www.klipartz.com/en" class="link">https://www.klipartz.com/en </a><em class="italic-text-2"> under anonymous non-commercial use.<br>‍</em><em>If you see one of your creations and want to be credited or want it removed, please </em>
-      <a href="http://www.ladataviz.com" class="link"><em>contact me</em></a><em>!</em><br><em class="italic-text-2">Data:  <a href="https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_film_actors_(The_Infinity_Saga)" class="link">List_of_Marvel_Cinematic_Universe_film_actors_(The_Infinity_Saga)</a></em>
-    </p>
-  </div>
+<FooterSection {phase} />
