@@ -155,7 +155,7 @@
   <HeaderSection {phase}/>
   
   <div class="div-block-11">
-    <a id="1" on:touch={()=>{}} on:mouseenter={() => mouseEnterTitle(1)} on:mouseleave={mouseLeaveTitle} class="linkBottom" href="phase1"><h1 class="heading bottom">phase one</h1></a>
+    <a id="1" on:mousedown={() => {}} on:mouseenter={() => mouseEnterTitle(1)} on:mouseleave={mouseLeaveTitle} class="linkBottom" href="phase1"><h1 class="heading bottom">phase one</h1></a>
     <a id="2" on:mouseenter={() => mouseEnterTitle(2)} on:mouseleave={mouseLeaveTitle} class="linkBottom" href="phase2"><h1 class="heading bottom">phase two</h1></a>
     <a id="3" on:mouseenter={() => mouseEnterTitle(3)} on:mouseleave={mouseLeaveTitle} class="linkBottom" ><h1 class="heading bottom" style="background-color: grey ;">phase three</h1></a>
   </div>
