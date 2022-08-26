@@ -55,12 +55,6 @@
   //   .alphaTarget(0);
 
   //   simulation.tick(300)
-  // simulation.on("tick", ticked);
-  // function ticked() {
-  //   nodeSimu = nodeSimu;
-  //   linkSimu = linkSimu;
-  //   start=1
-  // };
 
   //   console.log(JSON.stringify(nodeSimu, ['x','y','type','id','movieList','name','actorName','characterName']))
   // console.log(JSON.stringify(linkSimu, ['index','source','target','x','y','id']))
@@ -110,7 +104,6 @@
       linkHighlights = links
       hover=0
       show=0;
-
     }
   }
 
@@ -147,14 +140,12 @@
       d => (d.type == 'character' && movieList.some(substring=>d.movieList.includes(substring))) 
       ||    movieList.some(substring=> ('|'+d.id+'|').includes(substring)))
 
-      titleHover = 1
   }
   
   function mouseLeaveTitle(e)
   {
     nodeHighlights = nodes
-      titleHover = 0  
-  }
+    }
 
   </script>
 
