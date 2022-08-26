@@ -33,7 +33,7 @@
         moviePictureId = 'phase'+phase
         mounted=1  
         if (innerWidth<1280) {maxH=1800} 
-        preloadImageUrls = movieData.map( d => { if ( !d.id.includes('phase')) { return `/images/${d.movieId}.png` } } );
+        preloadImageUrls = movieData.map( d => { if ( d.score !=0 ) { return `/images/${d.movieId}.png` } } );
         preloadImageUrls.push('/images/phase'+phase+'.png')
         scroll() 
       }

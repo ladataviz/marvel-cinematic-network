@@ -129,7 +129,7 @@
       previousNode=null
     }    
   }
-  
+
   let touched = 0
   function mouseEnterTitle(phase)
   {
@@ -166,8 +166,8 @@
   
   <div class="div-block-11">
     <a id="1" on:touchstart={touch} on:mouseenter={() => mouseEnterTitle(1)} on:mouseleave={mouseLeaveTitle} class="linkBottom" href="phase1"><h1 class="heading bottom">phase one</h1></a>
-    <a id="2" on:mouseenter={() => mouseEnterTitle(2)} on:mouseleave={mouseLeaveTitle} class="linkBottom" href="phase2"><h1 class="heading bottom">phase two</h1></a>
-    <a id="3" on:mouseenter={() => mouseEnterTitle(3)} on:mouseleave={mouseLeaveTitle} class="linkBottom" ><h1 class="heading bottom" style="background-color: grey ;">phase three</h1></a>
+    <a id="2" on:touchstart={touch} on:mouseenter={() => mouseEnterTitle(2)} on:mouseleave={mouseLeaveTitle} class="linkBottom" href="phase2"><h1 class="heading bottom">phase two</h1></a>
+    <a id="3" on:touchstart={touch} on:mouseenter={() => mouseEnterTitle(3)} on:mouseleave={mouseLeaveTitle} class="linkBottom" ><h1 class="heading bottom" style="background-color: grey ;">phase three</h1></a>
   </div>
 
     <div bind:clientWidth={w} bind:clientHeight={h} class="main-viz">
