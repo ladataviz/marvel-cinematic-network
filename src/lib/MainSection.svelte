@@ -33,7 +33,7 @@
         moviePictureId = 'phase'+phase
         mounted=1  
         if (innerWidth<1280) {maxH=1800} 
-        preloadImageUrls = movieData.map( d => { if (d.score != '0') { return `/images/${d.movieId}.png` } } );
+        preloadImageUrls = movieData.map( d => { if ( !d.id.includes('phase')) { return `/images/${d.movieId}.png` } } );
         preloadImageUrls.push('/images/phase'+phase+'.png')
         scroll() 
       }
@@ -73,11 +73,12 @@
   
     function appearanceMovie(target) { return  sizeLinks.filter(d => d.source.id == target).length  + ' MCU main characters' }
 
-    function appearanceCharacter(target){ return 'appears in ' + sizeLinks.filter(d => d.target.id == target && d.source.score != 0).length + ' movie(s)'   }
+    function appearanceCharacter(target){ return 'appears in ' + sizeLinks.filter(d => d.target.id == target && !d.source.id.includes('phase')).length + ' movie(s)'   }
 
     function appearancePhase(target)
     {
-      let nb = sizeLinks.filter(d => d.target.id == target && d.source.score == 0).length
+      console.log(sizeLinks)
+      let nb = sizeLinks.filter(d => d.target.id == target && d.source.id.includes('phase')).length
       return nb == 0 ? '' : ' and ' + nb  + ' previous phase(s)';
     }
   
@@ -90,8 +91,8 @@
 
     function onMouseEnter(node) {
       tooltipId = node.type != 'character' ? node.name : node.characterName + ' by ' + node.actorName;
-      tooltipSize = node.type != 'character' ? appearanceMovie(node.id).toString()
-                  :  appearanceCharacter(node.id).toString() + appearancePhase(node.id).toString()
+      tooltipSize = node.type != 'character' ? appearanceMovie(node.id)
+                  :  appearanceCharacter(node.id) + appearancePhase(node.id)
       x = node.x ;
       y = node.y;
       show=1;

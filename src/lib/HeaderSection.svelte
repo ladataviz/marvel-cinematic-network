@@ -16,7 +16,7 @@
         {:else if phase ==2 }
           <br><strong>Scroll down</strong> to see how the MCU evolved during the <strong>Phase Two</strong>, <em>from </em><strong><em>Iron Man 3</em></strong> <em>to </em><strong><em>Ant-Man</em></strong>. 
         {/if}
-        <br>Each main <strong>character</strong> is connected to the <strong>movies</strong> they appear in, allowing you to see the <strong>connections</strong> between your favorite Marvel heroes <em>(or villains)</em>. <em>Of course, if you haven&#x27;t seen the movie, spoiler ahead!</em>
+        <br>Each main <strong>character</strong> and <strong>actor</strong> is connected to the <strong>movies</strong> they appear in, allowing you to see the <strong>connections</strong> between your favorite Marvel heroes <em>(or villains)</em>. <em>Of course, if you haven&#x27;t seen the movie, spoiler ahead!</em>
       </p>
       {#if phase<=1}
         <img src="images/legend.png" loading="lazy" height="" width="500" sizes="(max-width: 767px) 100vw, 500px" alt="" class="image">
