@@ -208,7 +208,6 @@
             y2={link.target.y+ h/2} 
             stroke-width={ 2.5  } 
             stroke={ linkHighlights.includes(link) ? "black" :"#eee" }
-  
             />
             {/if}
           {/each} 

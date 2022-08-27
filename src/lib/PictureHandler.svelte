@@ -18,7 +18,7 @@ export let phase
 {/if}
 
 {#if innerWidth>1280}
-{#if scrollDynamic % 900 >= 400 && scrollDynamic % 900 <= 700 && mounted }
+{#if scrollDynamic % 900 >= 400 && scrollDynamic % 900 <= 700 && mounted || scrollDynamic<900 }
   <div class="div-block-10"  style="background-image: url('./images/{moviePictureId}.png')" in:fade|local out:fade|local/>    
 {/if}
 {:else}
