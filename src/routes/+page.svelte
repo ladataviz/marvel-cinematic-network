@@ -1,6 +1,6 @@
 <script>
   import * as d3 from 'd3';
-  import {size} from "$lib/ColorHandler.svelte"
+  import {size} from "$lib/Handler.svelte"
   import HeaderSection from '$lib/HeaderSection.svelte';
   import Tooltip from '$lib/Tooltip.svelte';
   import { fade } from 'svelte/transition';

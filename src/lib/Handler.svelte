@@ -259,38 +259,25 @@ export function sizeStrokeLine(id, percentScroll,phase)
       return size >= 0 ? size : 0 ;
     }
 
- // function reset() 
-  // {
-  //   movie= 0
-  //   links = data.links.map(d => Object.create(d));
-  //   nodes = data.nodes.map(d => Object.create(d));  
-  //   sizeLinks = links;
+     function appearanceMovie(target,sizeLinks) { return  sizeLinks.filter(d => d.source.id == target).length  + ' MCU main characters' }
+     function appearanceCharacter(target,sizeLinks){ return 'appears in ' + sizeLinks.filter(d => d.target.id == target && !d.source.id.includes('phase')).length + ' movie(s)'   }
+     function appearancePhase(target,sizeLinks)
+    {
+      let nb = sizeLinks.filter(d => d.target.id == target && d.source.id.includes('phase')).length
+      return nb == 0 ? '' : ' and ' + nb  + ' previous phase(s)';
+    }
 
-  //   simulation = d3
-  //     .forceSimulation(nodes)
-  //     .force("charge", d3.forceManyBody().strength(-550).theta(-0.8))
-  //     .force("link", d3.forceLink(links).id(d => d.id))
-  //     .force("collide", d3.forceCollide( d=> d.type == 'character' ? size(d.id, d.type)+5 : size(d.id,d.type)+40 ))
-  //     .force("x", d3.forceX(width/2).strength(0.10))
-  //     .force("y", d3.forceY(height/2).strength(0.30))
-  //     .alphaTarget(0);
+    export function tooltipHandler(node, sizeLinks)
+    {
 
-  //   simulation.alpha(1).alphaTarget(0).restart();
+      let tooltipId = node.type != 'character' ? node.name : node.characterName + ' by ' + node.actorName;
+      let tooltipSize = node.type != 'character' ? appearanceMovie(node.id,sizeLinks)
+                    :  appearanceCharacter(node.id,sizeLinks) + appearancePhase(node.id,sizeLinks)
 
-  //   simulation.tick(100)
-  //   simulation.on("tick", ticked);
-  // }
+      return {tooltipId,tooltipSize}
+    }
 
 
-      // initialNodes = nodes;
-    // csvtext = sortedNodes.map(  d => (d.index +","+d.id +","+d.name+ ","+d.size +","+d.x+","+d.y+","+d.star +"\n")  )
-    // let csvContent = "data:text/csv;charset=utf-8,\nindex, id, name, size, x, y, star \n"+csvtext
-    // console.log(csvContent) 
-    // //console.log(links)
-    // sourceCSV = sortedLinks.map(  d => (d.index +","+d.source.id+ ","+d.source.x +","+d.source.y+ ",source \n") )
-    // targetCSV  = sortedLinks.map(  d => (d.index +","+d.target.id+ ","+d.target.x +","+d.target.y+ ", target \n") )
-    // let csvContent2 = "data:text/csv;charset=utf-8,\nindex, id, x, y, type \n"+sourceCSV+targetCSV
-    // console.log(csvContent2) 
 </script>
 
 

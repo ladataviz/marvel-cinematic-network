@@ -162,7 +162,7 @@ circle.in {
 
 .section-main {
   position: absolute;
-  top: 500px;
+  top: 450;
   display: block;
   width: 70%;
   height: 6350px;
@@ -254,34 +254,8 @@ circle.in {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  height: 500px;
-  padding-top: 41px;
-  padding-bottom: 41px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background-color: #fafafa;
-  text-align: center;
-}
-
-.section-2.small {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
   height: 450px;
-  padding-top: 41px;
+  padding-top: 7px;
   padding-bottom: 41px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -623,6 +597,63 @@ a{
   color: #747373;
 }
 
+
+.div-block-14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  grid-row-gap: 0px;
+}
+
+.nav {
+  width: 100%;
+  height: 34px;
+  padding-top: 8px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #e6e6e6;
+  font-family: Inter, sans-serif;
+  color: #000;
+  font-size: 18px;
+  font-weight: 200;
+}
+
+.nav.selected {
+  background-color: red;
+  color: #fff;
+  font-weight: 400;
+}
+
+.navblock {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  column-gap: 3px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  font-family: MARVEL2, sans-serif;
+}
+
 @media screen and (max-width: 1280px) {
   .body {
     min-width: 0px;
@@ -742,6 +773,7 @@ a{
 
 @media screen and (max-width: 767px) {
   .section {
+    background-color: blue;
     padding-top: 20px;
     padding-right: 20px;
     padding-left: 20px;
@@ -790,12 +822,19 @@ a{
     padding-top: 38px;
     font-size: 23px;
   }
+
+
+  .paragraph {
+    font-size: 8px;
+    line-height: 15px;
+  }
 }
 
 @media screen and (max-width: 479px) {
   .body {
     min-width: 0px;
   }
+
 
   .section-2 {
     overflow: hidden;

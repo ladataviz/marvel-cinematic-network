@@ -1,7 +1,8 @@
 <script>
     import * as d3 from 'd3';
     import { onMount } from "svelte"
-    import {colorCircleCharacter, colorStrokeLine, colorStrokeMovie, colorCircleMovie, colorStrokeCharacter, sizeStrokeLine, size} from "./ColorHandler.svelte"
+    import {colorCircleCharacter, colorStrokeLine, colorStrokeMovie, colorCircleMovie, colorStrokeCharacter, 
+      sizeStrokeLine, size, tooltipHandler} from "./Handler.svelte"
     import PhaseSection from "./PhaseSection.svelte";
     import MovieSection from './MovieSection.svelte';
     import HeaderSection from './HeaderSection.svelte';
@@ -17,19 +18,39 @@
     export let sizeScalePers
 
     let sizeLinks = links
-    let movieData = []
-    let movieList = []
-    let movie=0;
-    let mounted = 0;
-    let preloadImageUrls =[]
-    let maxH=900
-    let moveRight = phase==3 ? -70 : phase==2 ? -50 : 0
-
     let nodeHighlights = nodes
     let linkHighlights =links
+
+    let movieData = []
+    let movieList = []
+    let preloadImageUrls =[]
+    let moviePictureId;
+
+    let movie;
+    let mounted;
+    let maxH;
+    let innerHeight, innerWidth
+    let w;
+    let h;
+    let sizeHeader=450
+    
+    let moveRight = phase==3 ? -70 : phase==2 ? -50 : 0
+
+    let scrollY;
+    let percentScroll=0;
+    let scrollDynamic;
+
+    let tooltipId = '';
+    let tooltipSize = '';
+    let x = 0 
+    let y = 0
+
     let hover=0
     let click=0
-
+    let start=1;
+    let show=0
+    
+  
     onMount(
       async () => {
         movieData = await d3.csv(csv)
@@ -44,17 +65,6 @@
       }
     )
 
-    let start=1;
-    
-    let percentScroll=0;
-    let scrollDynamic;
-    let moviePictureId;
-  
-    let innerHeight, innerWidth
-    let w;
-    let h;
-    let scrollY;
-  
       //	filter function
     function scroll() 
     {
@@ -63,9 +73,10 @@
       maxH = innerWidth<1280 ? 1800 : 900
   
       scrollDynamic = scrollY + (innerHeight-maxH)/2
-      percentScroll = Math.round((scrollDynamic-500)/(Math.max(h,maxH)))
+      percentScroll = Math.round((scrollDynamic-sizeHeader)/(Math.max(h,maxH)))
   
       start = percentScroll >= 1 ? 0 : start
+
       movie = start==1 || percentScroll == 0  ? 0 : percentScroll
 
       if ( movie >=0 && movie<=movieData.length) {moviePictureId = movie == 0 || mounted==0  ? "phase"+phase : movieData[movie-1].movieId }
@@ -76,7 +87,7 @@
         linkHighlights = links
         click=0
         hover=0
-        previousNode=null
+        previousClickedNode=null
       }
       
       if(oldMovie!=movie)
@@ -85,46 +96,38 @@
         sizeLinks = links.filter(item => movieList.includes(item.source.id));
       }
     }
-  
-    function appearanceMovie(target) { return  sizeLinks.filter(d => d.source.id == target).length  + ' MCU main characters' }
 
-    function appearanceCharacter(target){ return 'appears in ' + sizeLinks.filter(d => d.target.id == target && !d.source.id.includes('phase')).length + ' movie(s)'   }
-
-    function appearancePhase(target)
+    function highlightNodes(node)
     {
-      let nb = sizeLinks.filter(d => d.target.id == target && d.source.id.includes('phase')).length
-      return nb == 0 ? '' : ' and ' + nb  + ' previous phase(s)';
+      return node.type == 'character' ?
+            nodes.filter(d => (d.type == 'character' &&  d.id == node.id) || ((d.type=='movie' || d.type=='phase') && node.movieList.includes('|'+d.id+'|')))
+            :  nodes.filter(d => (d.type == 'character' &&  d.movieList.includes('|'+node.id+'|')) || ( (d.type=='movie' || d.type=='phase') && node.id == d.id))
     }
-  
-    //Add mousemove action
-    let tooltipId = '';
-    let tooltipSize = '';
-    let x = 0 
-    let y = 0
-    let show=0
 
-  function mouseEnter(node)
-  {
-    tooltipId = node.type != 'character' ? node.name : node.characterName + ' by ' + node.actorName;
-      tooltipSize = node.type != 'character' ? appearanceMovie(node.id)
-                  :  appearanceCharacter(node.id) + appearancePhase(node.id)
+    function highlightLinks(node) { return links.filter(d=> d.target.id == node.id || d.source.id == node.id) }
+
+    function mouseEnter(node)
+    {
+      let toolipValues = tooltipHandler(node,sizeLinks)
+
+      tooltipId=toolipValues.tooltipId
+      tooltipSize=toolipValues.tooltipSize
+
       x = node.x ;
       y = node.y;
       show=1;
-    if( click == 0 )
-    {
-      nodeHighlights = node.type == 'character' ?
-          nodes.filter(d => (d.type == 'character' &&  d.id == node.id) || ((d.type=='movie' || d.type=='phase') && node.movieList.includes('|'+d.id+'|')))
-          :  nodes.filter(d => (d.type == 'character' &&  d.movieList.includes('|'+node.id+'|')) || ( (d.type=='movie' || d.type=='phase') && node.id == d.id))
 
-      linkHighlights = links.filter(d=> d.target.id == node.id || d.source.id == node.id)
-      hover = 1
+      if(!click)
+      {
+        nodeHighlights = highlightNodes(node)
+        linkHighlights = highlightLinks(node) 
+        hover = 1
+      }
     }
-  }
 
   function mouseLeave()
   {
-    if( click == 0 )
+    if(click == 0)
     {
       nodeHighlights = nodes
       linkHighlights = links
@@ -133,34 +136,28 @@
     show=0;
   }
 
-  let previousNode
+  let previousClickedNode
   function clickNode(node)
   {
     if(percentScroll <= 0)
       {
-        if( node != previousNode)
-      {
-        nodeHighlights = node.type == 'character' ?
-            nodes.filter(d => (d.type == 'character' &&  d.id == node.id) || ((d.type=='movie' || d.type=='phase') && node.movieList.includes('|'+d.id+'|')))
-            :  nodes.filter(d => (d.type == 'character' &&  d.movieList.includes('|'+node.id+'|')) || ((d.type=='movie' || d.type=='phase') && node.id == d.id))
-
-        linkHighlights = links.filter(d=> d.target.id == node.id || d.source.id == node.id)
-        click = 1
-        previousNode=node
-      }
-      else
-      {
-        nodeHighlights = nodes
-        linkHighlights = links
-        click=0
-        hover=0
-        previousNode=null
-      }    
-    }
-    else {click=0}
-   
+        if( node != previousClickedNode)
+        {
+          nodeHighlights = highlightNodes(node)
+          linkHighlights = highlightLinks(node) 
+          click = 1
+          previousClickedNode=node
+        }
+        else
+        {
+          nodeHighlights = nodes
+          linkHighlights = links
+          hover=0
+          click=0
+          previousClickedNode=null
+        }    
+     }
   }
-
 
   </script>  
   <svelte:head>
@@ -179,93 +176,87 @@
       <PictureHandler {innerWidth} {scrollDynamic} {moviePictureId} {mounted} {phase}/>
       
       {#if movieList.length>0}
-      <svg> 
-        {#each links as link}
-        <line 
-        class={  movieList.includes(link.source.id) ? 'in' : 'out' } 
-        x1={link.source.x + w/2 + moveRight} 
-        x2={link.target.x+ w/2+ moveRight} 
-        y1={link.source.y + h/2} 
-        y2={link.target.y+ h/2} 
-        stroke-width={ percentScroll > 0 ?  movieList.includes(link.source.id) ? sizeStrokeLine(link.source.id, percentScroll,phase) : 0
-        : linkHighlights.includes(link) && ( hover || click ) ? 2.5 : 1} 
-        stroke={ percentScroll > 0 ? colorStrokeLine(link.source.id, percentScroll,phase) 
-        :(hover || click) ? linkHighlights.includes(link) ? "black" :"#eee" : phase ==3 ? "#ccc" : phase==2 ? "#777" : "black" }/>
-      {/each} 
-      
-      {#each nodes as node}
-        <circle 
-        class={'in' } 
-        id={node.id}
-        cx={node.x + w/2+ moveRight} 
-        cy={node.y + h/2} 
-        r={ size(node.id, node.type,sizeScalePers, sizeScaleMovie,sizeLinks) } 
-        fill={ percentScroll > 0 ? node.type == 'character' ? colorCircleCharacter(node,percentScroll,phase) : nodes.type == "movie" ? colorCircleMovie(node.id) : "white"
-            : node.type == 'character' ?  nodeHighlights.includes(node) ? "black" :"#eee" : "white" }
-        stroke ={ percentScroll > 0 ? node.type == 'character' ? colorStrokeCharacter(node.id) : colorStrokeMovie(node.id,percentScroll,phase)
-           : nodeHighlights.includes(node) ? "black" :"#eee"} 
-        stroke-width= { node.type == 'character'  ? 0 : 4} 
-        />
-        {/each}
-
-
-        {#each links as link}
-          {#if percentScroll <=0 && hover && linkHighlights.includes(link) }
-          <line  
-          class="start"
-          x1={link.source.x + w/2+ moveRight } 
-          x2={link.target.x+ w/2+ moveRight} 
-          y1={link.source.y + h/2} 
-          y2={link.target.y+ h/2} 
-          stroke-width={ 2.5  } 
-          stroke={ linkHighlights.includes(link) ? "black" :"#eee" }
-          />
-          {/if}
-        {/each} 
-
-        {#each nodes as node}
-          {#if percentScroll <=0  && hover && nodeHighlights.includes(node) }
+        <svg> 
+          {#each links as link}
+            <line 
+            class={  movieList.includes(link.source.id) ? 'in' : 'out' } 
+            x1={link.source.x + w/2 + moveRight} 
+            x2={link.target.x+ w/2+ moveRight} 
+            y1={link.source.y + h/2} 
+            y2={link.target.y+ h/2} 
+            stroke-width={ percentScroll > 0 ?  movieList.includes(link.source.id) ? sizeStrokeLine(link.source.id, percentScroll,phase) : 0
+              : linkHighlights.includes(link) && ( hover || click ) ? 2.5 : 1} 
+            stroke={ percentScroll > 0 ? colorStrokeLine(link.source.id, percentScroll,phase) 
+              :(hover || click) ? linkHighlights.includes(link) ? "black" :"#eee" : phase ==3 ? "#ccc" : phase==2 ? "#777" : "black" }/>
+          {/each} 
+        
+          {#each nodes as node}
             <circle 
-            class="start"
+            class={'in' } 
+            id={node.id}
             cx={node.x + w/2+ moveRight} 
             cy={node.y + h/2} 
-            r={ size(node.id, node.type,sizeScalePers, sizeScaleMovie,sizeLinks)  } 
-            fill={node.type == 'character' ?   "black" : "white"}
-            stroke =  {  "black"  } 
+            r={ size(node.id, node.type,sizeScalePers, sizeScaleMovie,sizeLinks) } 
+            fill={ percentScroll > 0 ? node.type == 'character' ? colorCircleCharacter(node,percentScroll,phase) : nodes.type == "movie" ? colorCircleMovie(node.id) : "white"
+                : node.type == 'character' ?  nodeHighlights.includes(node) ? "black" :"#eee" : "white" }
+            stroke ={ percentScroll > 0 ? node.type == 'character' ? colorStrokeCharacter(node.id) : colorStrokeMovie(node.id,percentScroll,phase)
+              : nodeHighlights.includes(node) ? "black" :"#eee"} 
             stroke-width= { node.type == 'character'  ? 0 : 4} 
             />
-            {/if}        
-          {/each}
+           {/each}
+
+          {#if percentScroll <=0 && hover}
+            {#each linkHighlights as link}
+              <line  
+              class="start"
+              x1={link.source.x + w/2+ moveRight } 
+              x2={link.target.x+ w/2+ moveRight} 
+              y1={link.source.y + h/2} 
+              y2={link.target.y+ h/2} 
+              stroke-width={ 2.5} 
+              stroke={ linkHighlights.includes(link) ? "black" :"#eee" }
+              />
+            {/each} 
+
+            {#each nodeHighlights as node}
+              <circle 
+              class="start"
+              cx={node.x + w/2+ moveRight} 
+              cy={node.y + h/2} 
+              r={ size(node.id, node.type,sizeScalePers, sizeScaleMovie,sizeLinks)  } 
+              fill={node.type == 'character' ?   "black" : "white"}
+              stroke =  {  "black"  } 
+              stroke-width= { node.type == 'character'  ? 0 : 4} 
+              />
+            {/each}
+          {/if}
         </svg>
 
         <svg class="above">      
           {#each nodes as node}
-          <circle 
-          class="start"
-          cx={node.x + w/2+ moveRight} 
-          cy={node.y + h/2} 
-          r={ size(node.id, node.type,sizeScalePers, sizeScaleMovie,sizeLinks) + (node.type=='phase' || node.id=='joshbrolinthanos'  ? 3 :0) } 
-          fill={ percentScroll <=0 ? node.type == "movie" || node.type == "phase" || node.id=='joshbrolinthanos'  ? "white" : "transparent" : "transparent"}
-          opacity= {nodeHighlights.includes(node) ? 0 :  0.9}
-          stroke-width=   { node.type == 'character'  ? 0 : 4} 
-          on:mouseenter={() => mouseEnter(node)}
-          on:click={() =>  clickNode(node)}
-          on:mouseleave={mouseLeave}
-          />
+            <circle 
+            class="start"
+            cx={node.x + w/2+ moveRight} 
+            cy={node.y + h/2} 
+            r={ size(node.id, node.type,sizeScalePers, sizeScaleMovie,sizeLinks) + (node.type=='phase' || node.id=='joshbrolinthanos'  ? 3 :2) } 
+            fill={ percentScroll <=0 ? node.type == "movie" || node.type == "phase" || node.id=='joshbrolinthanos'  ? "white" : "transparent" : "transparent"}
+            opacity= {nodeHighlights.includes(node) ? 0 :  0.9}
+            stroke-width=   { node.type == 'character'  ? 0 : 4} 
+            on:mouseenter={() => mouseEnter(node)}
+            on:click={() =>  clickNode(node)}
+            on:mouseleave={mouseLeave}
+            />
           {/each}
         </svg>
-
-        {/if}
+      {/if}
   
       <Tooltip {moveRight} {x} {y} {w} {maxH} {show} {tooltipId} {tooltipSize} />
-      
     </div>
   </div>
   
   <PhaseSection {phase} />
   
   {#each movieData as movie}
-
    {#if movie.phase==0}
       <MovieSection 
         name={movie.movie}
@@ -278,17 +269,10 @@
     {/if}
   {/each}
   
-  
 <FooterSection {phase} />
-
   
 <style>
   circle.start {
     transition: fill 500ms ease, stroke 500ms ease, opacity 500ms ease;
-
-  }
-
-  line.start {
-    transition: stroke 400ms ease;
-  }
+  }  
 </style>
