@@ -32,7 +32,6 @@
     let innerHeight, innerWidth
     let w;
     let h;
-    let sizeHeader=450
     
     let moveRight = phase==3 ? -70 : phase==2 ? -50 : 0
 
@@ -58,7 +57,6 @@
         sizeLinks = links.filter(item => movieList.includes(item.source.id));
         moviePictureId = 'phase'+phase
         mounted=1  
-        if (innerWidth<1280) {maxH=1800} 
         preloadImageUrls = movieData.map( d => { if ( d.score !=0 ) { return `/images/${d.movieId}.png` } } );
         preloadImageUrls.push('/images/phase'+phase+'.png')
         scroll() 
@@ -71,7 +69,11 @@
       let oldMovie = movie
   
       maxH = innerWidth<1280 ? 1800 : 900
-  
+
+      console.log(innerWidth)
+      let sizeHeader = innerWidth<375 ? 100000 : 450
+
+
       scrollDynamic = scrollY + (innerHeight-maxH)/2
       percentScroll = Math.round((scrollDynamic-sizeHeader)/(Math.max(h,maxH)))
   

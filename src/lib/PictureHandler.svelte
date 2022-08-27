@@ -22,7 +22,7 @@ export let phase
   <div class="div-block-10"  style="background-image: url('./images/{moviePictureId}.png')" in:fade|local out:fade|local/>    
 {/if}
 {:else}
-  {#if scrollDynamic % 1800 >= 400 && scrollDynamic % 1800 <= 1000 && mounted }
+  {#if scrollDynamic % 1800 >= 400 && scrollDynamic % 1800 <= 1300 && mounted }
   <div class="div-block-10"  style="background-image: url('./images/{moviePictureId}.png')" in:fade|local out:fade|local/>    
 {/if} 
 {/if}
