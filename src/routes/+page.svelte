@@ -148,7 +148,6 @@
 
   function touch()
   {
-    console.log("o")
     touched=1
     }
   
@@ -175,9 +174,9 @@
      
       {#if start==1}
   
-      <div class="div-block-10 main"  style="background-image: url('./images/all.png')"/>    
+      <div class="div-block-10 main"  style="background-image: url('./images/all.png'); background-size: auto {innerWidth >= 1350 ? 100 :  (innerWidth/1350)*100}%" />    
 
-      <svg> 
+      <svg viewBox="{(w-1350)/2 } 0 1350 900" class="home"> 
           {#each links as link}
             <line  
             x1={link.source.x + w/2 } 
@@ -228,7 +227,7 @@
          
         </svg>
 
-        <svg class="above">      
+        <svg class="above home" viewBox="{(w-1350)/2 } 0 1350 900">      
           {#each nodes as node}
           <circle 
           cx={node.x + w/2} 
@@ -256,7 +255,7 @@
   <div class="section end wf-section small">
         <p class="paragraph-3"><em>Characters and movies are copyrighted by The Walt Disney Company and the Marvel Studio.<br>All pictures come from </em>
       <a href="https://www.klipartz.com/en" class="link">https://www.klipartz.com/en </a><em class="italic-text-2"> under anonymous non-commercial use.<br>‍</em><em>If you see one of your creations and want to be credited or want it removed, please </em>
-      <a href="http://www.ladataviz.com" class="link"><em>contact me</em></a><em>!</em><br><em class="italic-text-2">Data:  <a href="https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_film_actors_(The_Infinity_Saga)" class="link">List_of_Marvel_Cinematic_Universe_film_actors_(The_Infinity_Saga)</a></em>
+      <a href="http://www.ladataviz.com" class="link"><em>contact me</em></a><em>!</em><br><em class="italic-text-2">Data:  <a href="https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_film_actors_(The_Infinity_Saga)" class="link">List of Marvel Cinematic Universe film actors (The Infinity Saga)</a></em>
     </p>
   </div>
 

@@ -68,14 +68,12 @@
     {
       let oldMovie = movie
   
-      maxH = innerWidth<1280 ? 1800 : 900
+      maxH = 900
 
-      console.log(innerWidth)
-      let sizeHeader = innerWidth<375 ? 100000 : 450
+      let sizeHeader = innerWidth < 500 ? 550 : 450
 
-
-      scrollDynamic = scrollY + (innerHeight-maxH)/2
-      percentScroll = Math.round((scrollDynamic-sizeHeader)/(Math.max(h,maxH)))
+      scrollDynamic = scrollY + (innerHeight-maxH)/2 - sizeHeader
+      percentScroll = Math.round((scrollDynamic)/(Math.max(h,maxH)))
   
       start = percentScroll >= 1 ? 0 : start
 
@@ -178,7 +176,7 @@
       <PictureHandler {innerWidth} {scrollDynamic} {moviePictureId} {mounted} {phase}/>
       
       {#if movieList.length>0}
-        <svg> 
+        <svg viewBox="{(w-900)/2 } 0 900 900"> 
           {#each links as link}
             <line 
             class={  movieList.includes(link.source.id) ? 'in' : 'out' } 
@@ -234,7 +232,7 @@
           {/if}
         </svg>
 
-        <svg class="above">      
+        <svg class="above" viewBox="{(w-900)/2 } 0 900 900">       
           {#each nodes as node}
             <circle 
             class="start"
