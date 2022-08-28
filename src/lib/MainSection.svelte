@@ -70,7 +70,7 @@
   
       maxH = 900
 
-      let sizeHeader = innerWidth < 500 ? 550 : 450
+      let sizeHeader = innerWidth < 500 ? 550 : 300
 
       scrollDynamic = scrollY + (innerHeight-maxH)/2 - sizeHeader
       percentScroll = Math.round((scrollDynamic)/(Math.max(h,maxH)))
@@ -160,8 +160,6 @@
   {
     x=e.clientX
     y=e.clientY
-    console.log('x:' +x + " ,y:"+y)
-
   }
 
   </script>  
@@ -173,10 +171,10 @@
 
   <svelte:window on:mousemove={handleMove} bind:innerHeight on:scroll={scroll} bind:scrollY={scrollY} bind:innerWidth/>
   
+  <Tooltip {x} {y} {show} {tooltipId} {tooltipSize} />
   
   <HeaderSection {phase}/>
   
-  <Tooltip {x} {y} {show} {tooltipId} {tooltipSize} />
   <div class="section-main wf-section phase{phase}" >
    
     <div bind:clientWidth={w} bind:clientHeight={h} class="div-block-2" style:position="sticky" style:top={ (innerHeight-900)/2}px>
