@@ -112,9 +112,6 @@
 
       tooltipId=toolipValues.tooltipId
       tooltipSize=toolipValues.tooltipSize
-
-      x = node.x ;
-      y = node.y;
       show=1;
 
       if(!click)
@@ -159,6 +156,14 @@
      }
   }
 
+  function handleMove(e)
+  {
+    x=e.clientX
+    y=e.clientY
+    console.log('x:' +x + " ,y:"+y)
+
+  }
+
   </script>  
   <svelte:head>
       {#each preloadImageUrls as image}
@@ -166,9 +171,12 @@
       {/each}
   </svelte:head>
 
-  <svelte:window bind:innerHeight on:scroll={scroll} bind:scrollY={scrollY} bind:innerWidth/>
+  <svelte:window on:mousemove={handleMove} bind:innerHeight on:scroll={scroll} bind:scrollY={scrollY} bind:innerWidth/>
+  
+  
   <HeaderSection {phase}/>
   
+  <Tooltip {x} {y} {show} {tooltipId} {tooltipSize} />
   <div class="section-main wf-section phase{phase}" >
    
     <div bind:clientWidth={w} bind:clientHeight={h} class="div-block-2" style:position="sticky" style:top={ (innerHeight-900)/2}px>
@@ -249,8 +257,7 @@
           {/each}
         </svg>
       {/if}
-  
-      <Tooltip {moveRight} {x} {y} {w} {maxH} {show} {tooltipId} {tooltipSize} />
+
     </div>
   </div>
   
@@ -268,11 +275,14 @@
         />
     {/if}
   {/each}
-  
-<FooterSection {phase} />
-  
+
+    
+  <FooterSection {phase} />
+
+
 <style>
   circle.start {
     transition: fill 500ms ease, stroke 500ms ease, opacity 500ms ease;
   }  
 </style>
+

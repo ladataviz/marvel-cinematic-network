@@ -82,8 +82,6 @@
   {
     tooltipId = node.type == 'movie' ? node.name : node.characterName + ' by ' + node.actorName;
     tooltipSize = node.type == 'movie' ? appearance(node.id,node.type).toString() + ' MCU main characters' : 'appears in ' + appearance(node.id,node.type).toString() + ' movie(s)'
-    x = node.x ;
-    y = node.y;
     show=1;
     if( click == 0 )
     {
@@ -146,20 +144,22 @@
     }
   }
 
-  function touch()
+  function touch() {touched=1}
+  function mouseLeaveTitle() { nodeHighlights = nodes  }
+
+  function handleMove(e)
   {
-    touched=1
-    }
-  
-  function mouseLeaveTitle(e)
-  {
-    nodeHighlights = nodes
-    }
+    x=e.clientX
+    y=e.clientY
+  }
+
 
   </script>
 
 
   <svelte:window bind:innerHeight bind:scrollY={scrollY} bind:innerWidth/>
+
+  <Tooltip  {x} {y} {show} {tooltipId} {tooltipSize} />
 
   <HeaderSection {phase}/>
   
@@ -169,7 +169,7 @@
     <a id="3" on:touchstart={touch} on:mouseenter={() => mouseEnterTitle(3)} on:mouseleave={mouseLeaveTitle} class="linkBottom" ><h1 class="heading bottom" style="background-color: grey ;">phase three</h1></a>
   </div>
 
-    <div bind:clientWidth={w} bind:clientHeight={h} class="main-viz">
+    <div on:mousemove={handleMove} bind:clientWidth={w} bind:clientHeight={h} class="main-viz">
      
      
       {#if start==1}
@@ -246,8 +246,6 @@
     
   
         {/if}
-
-      <Tooltip {moveRight} {x} {y} {w} {maxH} {show} {tooltipId} {tooltipSize} />
       
     </div>
   
