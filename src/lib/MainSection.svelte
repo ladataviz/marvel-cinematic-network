@@ -1,7 +1,7 @@
 <script>
     import * as d3 from 'd3';
     import { onMount } from "svelte"
-    import {colorCircleCharacter, colorStrokeLine, colorStrokeMovie, colorCircleMovie, colorStrokeCharacter, 
+    import {colorCircleCharacter, colorCircleMovie, colorStrokeLine, colorStrokeMovie, colorStrokeCharacter, 
       sizeStrokeLine, size, tooltipHandler} from "./Handler.svelte"
     import PhaseSection from "./PhaseSection.svelte";
     import MovieSection from './MovieSection.svelte';
@@ -32,7 +32,8 @@
     let innerHeight, innerWidth
     let w;
     let h;
-    
+    let sizeHeader
+
     let moveRight = phase==3 ? -70 : phase==2 ? -50 : 0
 
     let scrollY;
@@ -57,8 +58,10 @@
         sizeLinks = links.filter(item => movieList.includes(item.source.id));
         moviePictureId = 'phase'+phase
         mounted=1  
-        preloadImageUrls = movieData.map( d => { if ( d.score !=0 ) { return `/images/${d.movieId}.png` } } );
-        preloadImageUrls.push('/images/phase'+phase+'.png')
+        movieData.map( d => { if ( d.score != "0" ) { preloadImageUrls.push(`/images/${d.movieId}.png`) } } );
+        preloadImageUrls.push('./images/phase'+phase+'.png')
+
+        sizeHeader = innerWidth <= 1280 ? 500 : innerWidth < 500 ? 550 : 450
         scroll() 
       }
     )
@@ -70,7 +73,6 @@
   
       maxH = 900
 
-      let sizeHeader = innerWidth < 500 ? 550 : 300
 
       scrollDynamic = scrollY + (innerHeight-maxH)/2 - sizeHeader
       percentScroll = Math.round((scrollDynamic)/(Math.max(h,maxH)))
@@ -93,6 +95,7 @@
       if(oldMovie!=movie)
       {
         movieList = movie <= 0 ? movieData.map(d=> d.movieId) : movieData.map(d=> parseInt(d.sort) <= movie ? d.movieId :'' )
+    
         sizeLinks = links.filter(item => movieList.includes(item.source.id));
       }
     }
@@ -179,7 +182,7 @@
    
     <div bind:clientWidth={w} bind:clientHeight={h} class="div-block-2" style:position="sticky" style:top={ (innerHeight-900)/2}px>
   
-      <PictureHandler {innerWidth} {scrollDynamic} {moviePictureId} {mounted} {phase}/>
+      <PictureHandler {innerWidth} {scrollDynamic} {moviePictureId} {mounted} {phase} {sizeHeader} {movie}/>
       
       {#if movieList.length>0}
         <svg viewBox="{(w-900)/2 } 0 900 900"> 
@@ -203,7 +206,7 @@
             cx={node.x + w/2+ moveRight} 
             cy={node.y + h/2} 
             r={ size(node.id, node.type,sizeScalePers, sizeScaleMovie,sizeLinks) } 
-            fill={ percentScroll > 0 ? node.type == 'character' ? colorCircleCharacter(node,percentScroll,phase) : nodes.type == "movie" ? colorCircleMovie(node.id) : "white"
+            fill={ percentScroll > 0 ? node.type == 'character' ? colorCircleCharacter(node,percentScroll,phase) : colorCircleMovie(node.id,percentScroll)
                 : node.type == 'character' ?  nodeHighlights.includes(node) ? "black" :"#eee" : "white" }
             stroke ={ percentScroll > 0 ? node.type == 'character' ? colorStrokeCharacter(node.id) : colorStrokeMovie(node.id,percentScroll,phase)
               : nodeHighlights.includes(node) ? "black" :"#eee"} 

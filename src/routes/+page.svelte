@@ -7,6 +7,7 @@
   import nodes from '$lib/mainNodes.js';
   import links from '$lib/mainLinks.js';
   import { onMount } from "svelte";
+import FooterSection from '../lib/FooterSection.svelte';
   // import data from "$lib/data/all.js";
 
   let start = 0
@@ -166,7 +167,7 @@
   <div class="div-block-11">
     <a id="1" on:touchstart={touch} on:mouseenter={() => mouseEnterTitle(1)} on:mouseleave={mouseLeaveTitle} class="linkBottom" href="phase1"><h1 class="heading bottom">phase one</h1></a>
     <a id="2" on:touchstart={touch} on:mouseenter={() => mouseEnterTitle(2)} on:mouseleave={mouseLeaveTitle} class="linkBottom" href="phase2"><h1 class="heading bottom">phase two</h1></a>
-    <a id="3" on:touchstart={touch} on:mouseenter={() => mouseEnterTitle(3)} on:mouseleave={mouseLeaveTitle} class="linkBottom" ><h1 class="heading bottom" style="background-color: grey ;">phase three</h1></a>
+    <a id="3" on:touchstart={touch} on:mouseenter={() => mouseEnterTitle(3)} on:mouseleave={mouseLeaveTitle} class="linkBottom" href="phase3"><h1 class="heading bottom">phase three</h1></a>
   </div>
 
     <div on:mousemove={handleMove} bind:clientWidth={w} bind:clientHeight={h} class="main-viz">
@@ -174,7 +175,9 @@
      
       {#if start==1}
   
-      <div class="div-block-10 main"  style="background-image: url('./images/all.png'); background-size: auto {innerWidth >= 1350 ? 100 :  (innerWidth/1350)*100}%" />    
+      <div class="div-block-10 main">
+        <img  src='./images/all.png' alt= "Click on a phase to discover more" style="height: {innerWidth >= 1350 ? 100 :  (innerWidth/1350)*100}%" />    
+      </div>  
 
       <svg viewBox="{(w-1350)/2 } 0 1350 900" class="home"> 
           {#each links as link}
@@ -249,13 +252,7 @@
       
     </div>
   
-
-  <div class="section end wf-section small">
-        <p class="paragraph-3"><em>Characters and movies are copyrighted by The Walt Disney Company and the Marvel Studio.<br>All pictures come from </em>
-      <a href="https://www.klipartz.com/en" class="link">https://www.klipartz.com/en </a><em class="italic-text-2"> under anonymous non-commercial use.<br>‍</em><em>If you see one of your creations and want to be credited or want it removed, please </em>
-      <a href="http://www.ladataviz.com" class="link"><em>contact me</em></a><em>!</em><br><em class="italic-text-2">Data:  <a href="https://en.wikipedia.org/wiki/List_of_Marvel_Cinematic_Universe_film_actors_(The_Infinity_Saga)" class="link">List of Marvel Cinematic Universe film actors (The Infinity Saga)</a></em>
-    </p>
-  </div>
+    <FooterSection phase=0/>
 
   
 <style>

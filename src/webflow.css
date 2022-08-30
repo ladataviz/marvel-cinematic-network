@@ -161,7 +161,7 @@ circle.in {
 }
 
 .section-main.phase3 {
-  height: 11700px;
+  height: 12600px;
 }
 
 .paragraph-3 {
@@ -414,6 +414,23 @@ a{
   align-items: stretch;
 }
 
+.imgMovie{
+  position:absolute; 
+  object-fit:cover;
+  width:auto;
+}
+
+
+.div-block-7.bottom {
+  
+  justify-content: flex-end;
+}
+
+.div-block-7.top {
+  
+  justify-content: flex-start;
+}
+
 .paragraph {
   margin-bottom: 0px;
   font-family: Inter, sans-serif;
@@ -655,7 +672,7 @@ a{
   }
 
   .section-main.phase3 {
-    height: 11900px;
+    height: 12800px;
   }
 
   .section.grey {

@@ -8,7 +8,7 @@
             <div class="navblock">
               <a class="nav {phase==1 ?"selected" :''}" href="phase1">PHASE ONE</a>
               <a class="nav {phase==2 ?"selected" :''}" href="phase2">PHASE TWO</a>
-              <a class="nav {phase==3 ?"selected" :''}" href="">PHASE THREE</a>
+              <a class="nav {phase==3 ?"selected" :''}" href="phase3">PHASE THREE</a>
             </div>
           <a href="/"><h1 class="heading">marvel</h1></a>
         </div>
