@@ -23,7 +23,9 @@
         <strong>Scroll down</strong> to see how the MCU evolved during the <strong>Phase One</strong>, <em>from </em><strong><em>Iron Man</em></strong> <em>to </em><strong><em>The Avengers</em></strong>. 
        {:else if phase ==2 }
         <strong>Scroll down</strong> to see how the MCU evolved during the <strong>Phase Two</strong>, <em>from </em><strong><em>Iron Man 3</em></strong> <em>to </em><strong><em>Ant-Man</em></strong>. 
-      {/if}
+        {:else if phase ==3 }
+        <strong>Scroll down</strong> to see how the MCU evolved during the <strong>Phase Three</strong>, <em>from </em><strong><em>Civil War</em></strong> <em>to </em><strong><em>Far from Home</em></strong>. 
+        {/if}
       <br>Each main <strong>character</strong> and <strong>actor</strong> is connected to the <strong>movies</strong> they appear in, allowing you to see the <strong>connections</strong> between your favorite Marvel heroes <em>(or villains)</em>. <em>Of course, if you haven&#x27;t seen the movie, spoiler ahead!</em>
       
       </p>
