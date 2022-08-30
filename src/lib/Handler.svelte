@@ -220,7 +220,7 @@ export function sizeStrokeLine(id, percentScroll,phase)
       return size >= 0 ? size : 0 ;
     }
 
-     function appearanceMovie(target,sizeLinks) { return  sizeLinks.filter(d => d.source.id == target).length  + ' MCU main characters' }
+     function appearanceMovie(target,sizeLinks) { return  sizeLinks.filter(d => d.source.id == target).length  + ' main characters' }
      function appearanceCharacter(target,sizeLinks){ return 'appears in ' + sizeLinks.filter(d => d.target.id == target && !d.source.id.includes('phase')).length + ' movie(s)'   }
      function appearancePhase(target,sizeLinks)
     {

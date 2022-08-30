@@ -216,7 +216,7 @@
               </p>
            {:else if sort == 5}
             <p class="paragraph">Thor is back in the <strong>fifth</strong> movie of Phase Three! 
-              <br><br>With the help of <strong>Strange</strong>, <strong>Thor</strong> and <strong>Loki locate</strong> their father, <strong>Odin</strong>, who <strong>dies</strong>, freeing <strong>Hela</strong> <em>(Cate Blanchett)</em>.
+              <br><br>With the help of <strong>Strange</strong>, <strong>Thor</strong> and <strong>Loki locate</strong> their father, <span class="text-span"><strong class="bold-text-2">Odin</strong></span>, who <strong>dies</strong>, freeing <strong>Hela</strong> <em>(Cate Blanchett)</em>.
               She is Odin&#x27;s first child and was <strong>imprisoned</strong> after becoming too <strong>ambitious</strong> and <strong>powerful</strong>.
               <br><br>Hella <strong>destroys</strong> Thor&#x27;s <strong>hammer</strong> and takes <strong>control</strong> of <strong>Asgard</strong>.
               Thor ends up on Sakaar where he&#x27;s enslaved by <strong>Valkyrie</strong> <em>(Tessa Thompson)</em> and forced to fight his friend from work, the <strong>Hulk</strong>.
