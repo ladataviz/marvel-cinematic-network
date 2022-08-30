@@ -25,7 +25,7 @@ $: scroll = scrollDynamic-sizeHeader
 {#key {movie}}
   {#if scroll % 900 >= (movie == 8 || movie ==12 ? 10 : 200) && scroll % 900 <=  (movie == 7 || movie ==11 || movie ==12  ? 890 : 700) && mounted || scrollDynamic<300 }
     <div class="div-block-10">
-      <img class="imgMovie" src='./images/{moviePictureId}.png' alt="Picture of {moviePictureId}" style="height: {innerWidth >= 1280 ? 100 : innerWidth >= 550 ? 61.05  :  (innerWidth/900)*100}%;" transition:fade|local/>
+      <img class="imgMovie" src='/images/{moviePictureId}.png' alt="Picture of {moviePictureId}" style="height: {innerWidth >= 1280 ? 100 : innerWidth >= 550 ? 61.05  :  (innerWidth/900)*100}%;" transition:fade|local/>
     </div>
   {/if}
 {/key}

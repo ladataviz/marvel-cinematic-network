@@ -59,7 +59,7 @@
         moviePictureId = 'phase'+phase
         mounted=1  
         movieData.map( d => { if ( d.score != "0" ) { preloadImageUrls.push(`/images/${d.movieId}.png`) } } );
-        preloadImageUrls.push('./images/phase'+phase+'.png')
+        preloadImageUrls.push('/images/phase'+phase+'.png')
 
         sizeHeader = innerWidth <= 1280 ? 500 : innerWidth < 500 ? 550 : 450
         scroll() 
