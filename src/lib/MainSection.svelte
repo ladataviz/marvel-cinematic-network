@@ -23,7 +23,6 @@
 
     let movieData = []
     let movieList = []
-    let preloadImageUrls =[]
     let moviePictureId;
 
     let movie;
@@ -58,9 +57,6 @@
         sizeLinks = links.filter(item => movieList.includes(item.source.id));
         moviePictureId = 'phase'+phase
         mounted=1  
-        movieData.map( d => { if ( d.score != "0" ) { preloadImageUrls.push(`/images/${d.movieId}.png`) } } );
-        preloadImageUrls.push('/images/phase'+phase+'.png')
-
         sizeHeader = innerWidth <= 1280 ? 500 : innerWidth < 500 ? 550 : 450
         scroll() 
       }
@@ -166,11 +162,8 @@
   }
 
   </script>  
-  <svelte:head>
-      {#each preloadImageUrls as image}
-        <link rel="preload" as="image" href={image} />
-      {/each}
-  </svelte:head>
+
+
 
   <svelte:window on:mousemove={handleMove} bind:innerHeight on:scroll={scroll} bind:scrollY={scrollY} bind:innerWidth/>
   
